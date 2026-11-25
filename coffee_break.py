@@ -61,6 +61,23 @@ def countdown(label, minutes):
 def main():
     args = parse_args()
 
+    if not sys.stdin.isatty():
+        data = sys.stdin.read().strip().split()
+        if len(data) == 0 or len(data) > 3:
+            print("エラー：標準入力は「作業時間、休憩時間、セット数」の1~3個の整数で指定してください。",file = sys.stderr)
+            sys.exit(1)
+        try:
+            values = [int(x) for x in data]
+        except ValueError:
+             print("エラー：標準入力には整数を指定してください。", file = sys.stderr)
+
+        if len(values) >= 1:
+            args.work = values[0]
+        if len(values) >= 2:
+            args.break_time = values[1]
+        if len(values) >= 3:
+            args.cycles = values[2]
+
     if args.work <= 0 or args.break_time <= 0 or args.cycles <= 0:
         print("エラー：すべての値は１以上の整数で指定してください。",file = sys.stderr)
         sys.exit(1)
