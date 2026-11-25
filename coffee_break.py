@@ -67,4 +67,19 @@ def main():
 
     try:
 	for cycle in range(a, args.cycles + 1):
-		
+		print(f"\n---セット{cycle} / {args.cycles}---")
+		countdown("作業中", args.work)
+		notify(f"作業完了","{cycle}セット目の作業が終わりました。休憩しましょう！")
+		if cycle < args.cycle
+			countdown("休憩中", srgs.break_time)
+			notify("休憩終了","休憩が終わりました。次の作業を始めましょう！")
+	print(f"\nすべてのセットが完了しました!お疲れ様でした。"
+
+    except KeyboardInterrupt:
+	print("\n\nタイマーを中断しました。")
+    finally:
+	sys.stdout.write("\033[?25h")
+	sys.stdout.flush()
+
+if _name_ == "_main_":
+    main()
