@@ -62,7 +62,9 @@ def main():
     args = parse_args()
 
     if not sys.stdin.isatty():
-        data = sys.stdin.read().strip().split()
+      raw = sys.stdin.read()
+      if raw != "":
+        data = raw.strip().split()
         if len(data) == 0 or len(data) > 3:
             print("エラー：標準入力は「作業時間、休憩時間、セット数」の1~3個の整数で指定してください。",file = sys.stderr)
             sys.exit(1)
